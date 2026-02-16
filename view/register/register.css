@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f4f7f6;
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  background: #ffffff;
+  padding: 14px 60px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  background: #1d7f5f;
+  color: white;
+  font-size: 22px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.logo-text .eco {
+  color: #111;
+}
+
+.logo-text .loop {
+  color: #1d7f5f;
+}
+
+/* AUTH PAGE */
+.auth-wrapper {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;
+}
+
+.auth-card {
+  width: 520px;
+  max-width: 95%;
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  animation: fadeUp 0.8s ease;
+}
+
+/* Heading */
+.auth-card h1 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.subtext {
+  text-align: center;
+  color: #666;
+  margin-bottom: 26px;
+}
+
+/* Form */
+.auth-form label {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  color: #111;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d6dedb;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fbfdfc;
+}
+
+.input-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  font-size: 15px;
+}
+
+.icon {
+  opacity: 0.7;
+}
+
+.eye {
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+/* Button */
+.btn-main {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px;
+  background: #148a5a;
+  color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.25s;
+}
+
+.btn-main:hover {
+  background: #0f6f48;
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .navbar {
+    padding: 14px 18px;
+  }
+
+  .auth-card h1 {
+    font-size: 26px;
+  }
+}

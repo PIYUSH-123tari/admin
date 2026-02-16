@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Agent</title>
+  <link rel="stylesheet" href="ca.css" />
+</head>
+<body>
+
+<div class="back-container">
+  <button type="button" id="backBtn">← Back to Agent Management</button>
+</div>
+
+  <h1>CREATE AGENT</h1>
+
+  <form id="agentForm" enctype="multipart/form-data">
+
+    <input type="text" name="agent_name" placeholder="AGENT NAME" required />
+
+    <textarea name="agent_address" placeholder="AGENT ADDRESS" required></textarea>
+
+    <input type="tel" name="agent_phoneNo" placeholder="PHONE NUMBER" required />
+
+    <input type="email" name="agent_email" placeholder="EMAIL" required />
+
+    <input type="password" name="password" placeholder="PASSWORD" required />
+
+    <label for="pass_photo">PASSPORT SIZE PHOTO</label>
+    <input type="file" name="passport_photo" id="pass_photo" accept=".jpg,.jpeg,.png" required />
+
+    <label for="adhar_photo">AADHAR CARD PHOTO</label>
+    <input type="file" name="adhar_photo" id="adhar_photo" accept=".jpg,.jpeg,.png" required />
+
+    <!-- STATUS (DEFAULT AVAILABLE) -->
+    <label for="status">STATUS</label>
+    <select name="status" id="status">
+  <!-- <option value="" disabled selected>STATUS</option> -->
+  <option value="available" selected>AVAILABLE</option>
+  <option value="unavailable">UNAVAILABLE</option>
+</select>
+
+   
+    <button type="submit">CREATE AGENT</button>
+  </form>
+
+  <script src="ca.js"></script>
+</body>
+</html>

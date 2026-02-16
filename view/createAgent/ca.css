@@ -1,0 +1,63 @@
+body {
+  background: #f4f6f8;
+  font-family: Arial, sans-serif;
+  padding: 30px;
+}
+/* Back button container */
+.back-container {
+  max-width: 500px;
+  margin: 0 auto 15px auto;
+  text-align: left;
+}
+
+/* Back button */
+#backBtn {
+  background: transparent;
+  color: #2c7be5;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#backBtn:hover {
+  text-decoration: underline;
+  color: #1a68d1;
+}
+
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+input, textarea, select, button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+button {
+  background: #2c7be5;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1a68d1;
+}
