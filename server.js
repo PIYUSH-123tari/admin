@@ -23,6 +23,8 @@ if (!fs.existsSync("uploads")) {
 
 app.use("/managers", require("./router/managerRoutes"));
 app.use("/api/agents", require("./router/agentRoutes"));
+// Serve uploads folder as static
+app.use("/uploads", express.static("uploads"));
 
 
 

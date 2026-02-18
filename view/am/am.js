@@ -5,7 +5,7 @@ function createAgent() {
 
 function manageAgents() {
   alert("VIEW / UPDATE / DELETE AGENTS CLICKED");
-  // window.location.href = "manage-agents.html";
+  window.location.href = "../getAgents/ga.html";
 }
 
 function agentStatus() {

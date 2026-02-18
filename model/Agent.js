@@ -29,7 +29,6 @@ const agentSchema = new mongoose.Schema({
   password:
   {  type:String,
      required:true,
-     unique:true
   },
 
   passport_photo:
