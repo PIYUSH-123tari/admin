@@ -3,6 +3,7 @@ const connectDB = require("./config/db");
 const cors=require("cors");
 
 const corsOptions=require("./config/corsOptions");
+const agentStatusRoutes = require("./router/agentStatusRoutes");
 
 const app = express();
 connectDB();
@@ -26,6 +27,9 @@ app.use("/api/agents", require("./router/agentRoutes"));
 // Serve uploads folder as static
 app.use("/uploads", express.static("uploads"));
 
+
+
+app.use("/api", agentStatusRoutes);
 
 
 app.listen(3500, () => {

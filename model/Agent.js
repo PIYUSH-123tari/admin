@@ -43,7 +43,7 @@ const agentSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ["available", "unavailable"],
-    default: "available"
+    default: "unavailable"
   },
 
   region_Id: {

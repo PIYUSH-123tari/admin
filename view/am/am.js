@@ -10,5 +10,5 @@ function manageAgents() {
 
 function agentStatus() {
   alert("AGENT STATUS CLICKED");
-  // window.location.href = "agent-status.html";
+  window.location.href = "../agentStatus/as.html";
 }
