@@ -2,9 +2,20 @@
 const mongoose = require("mongoose");
 
 const categorySchema = new mongoose.Schema({
-  category_name: String,
-  rate_per_kg: Number,
-  description: String
+  category_name: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true
+  },
+  rate_per_kg: {
+    type: Number,
+    required: true,
+    default: 50
+  },
+  description: {
+    type: String,
+    required: true
+  }
 });
-
 module.exports = mongoose.model("Category", categorySchema);

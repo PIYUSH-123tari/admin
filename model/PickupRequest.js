@@ -1,44 +1,77 @@
- const mongoose = require("mongoose");
- const { v4: uuidv4 } = require("uuid");
+const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 
 const pickupRequestSchema = new mongoose.Schema({
 
-pickupRequest_id:{
-type: String,
-unique: true,
-required: true,
- default: () => uuidv4() 
-}
-,
-userId: {
-type: String,
-required: true
-},
+  pickupRequest_id: {
+    type: String,
+    unique: true,
+    required: true,
+    default: () => uuidv4()
+  },
 
-region_Id:{
-type:String,
-required:true
-},
+  // Reference to User
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+  },
 
-phone: {
+  // Copied from user
+  region_Id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
+  },
+
+  userPhone: {
     type: String,
     required: true
   },
 
-waste_type: String,
-estimated_weight: Number,
-pickup_address: String,
-preferred_date: Date,
+  additional_phone_no: {
+    type: String,
+    default: null
+  },
 
-image: {
-type: String   // e.g. "waste_123.png" or "/uploads/waste_123.jpg"
-},
+  // 🔥 Category reference
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+    required: true
+  },
 
-status: {
-type: String,
-enum: ["pending", "assigned", "collected", "recycled"],
-default: "pending"
-}
+  // 🔥 User's own description
+  waste_description: {
+    type: String,
+    required: true
+  },
+
+  estimated_weight: {
+    type: Number,
+    required: true
+  },
+
+  pickup_address: {
+    type: String,
+    required: true
+  },
+
+  preferred_date: {
+    type: Date,
+    required: true
+  },
+
+  image: {
+    type: String,
+    default: null
+  },
+
+  status: {
+    type: String,
+    enum: ["pending", "assigned", "collected", "recycled"],
+    default: "pending"
+  }
+
 }, { timestamps: true });
 
-module.exports = mongoose.model("PickupRequest", pickupRequestSchema);  
+module.exports = mongoose.model("PickupRequest", pickupRequestSchema);

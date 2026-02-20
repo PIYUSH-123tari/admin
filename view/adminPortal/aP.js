@@ -5,7 +5,7 @@ function openAgents() {
 
 function openPickup() {
   alert("Pickup Request & Assignment Clicked");
-  // window.location.href = "pickup.html";
+  window.location.href = "../adminPUR/adminPickupRequests.html";
 }
 
 function openPackages() {

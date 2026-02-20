@@ -4,6 +4,7 @@ const cors=require("cors");
 
 const corsOptions=require("./config/corsOptions");
 const agentStatusRoutes = require("./router/agentStatusRoutes");
+const adminRoutes = require("./router/adminPickupRoutes");
 
 const app = express();
 connectDB();
@@ -30,6 +31,7 @@ app.use("/uploads", express.static("uploads"));
 
 
 app.use("/api", agentStatusRoutes);
+app.use("/api/admin", adminRoutes);
 
 
 app.listen(3500, () => {

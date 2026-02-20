@@ -17,13 +17,22 @@ const userSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
-  password: {
-    type: String,
-    required: true
-  },
-  region_Id:{type:String,required:true},
+ password: {
+  type: String,
+  required: true
+},
+  region_Id: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "Region",
+  required: true
+},
+photo: {
+  type: String,
+  default: null
+},
   reward_points: { type: Number, default: 0 },
   created_at: { type: Date, default: Date.now }
 });
