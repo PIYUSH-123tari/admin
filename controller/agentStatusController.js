@@ -1,34 +1,32 @@
 const Agent = require("../model/Agent");
 
-// GET ALL AGENTS
+// GET ALL AGENTS (Auto Calculate Status)
 exports.getAllAgents = async (req, res) => {
   try {
     const agents = await Agent.find();
-    res.json(agents);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
 
-// UPDATE STATUS + ASSIGNED ORDER
-exports.updateAgentStatus = async (req, res) => {
-  try {
-    const { status, assigned_pending_order } = req.body;
+    const formattedAgents = agents.map(agent => {
 
-    if (assigned_pending_order < 0) {
-      return res.status(400).json({ message: "Orders cannot be negative" });
-    }
+      // Prevent negative values
+      const orders = agent.assigned_pending_order < 0 
+        ? 0 
+        : agent.assigned_pending_order;
 
-    const updatedAgent = await Agent.findByIdAndUpdate(
-      req.params.id,
-      {
-        status,
-        assigned_pending_order
-      },
-      { new: true }
-    );
+      // AUTO STATUS LOGIC
+      const calculatedStatus = orders > 0 
+        ? "unavailable" 
+        : "available";
 
-    res.json(updatedAgent);
+      return {
+        _id: agent._id, // Mongo ObjectId
+        agent_name: agent.agent_name,
+        assigned_pending_order: orders,
+        status: calculatedStatus
+      };
+    });
+
+    res.json(formattedAgents);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

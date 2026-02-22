@@ -1,14 +1,24 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+  // 🔙 Back to Admin Portal
+  const backBtn = document.getElementById("backBtn");
+  backBtn.addEventListener("click", () => {
+    window.location.href = "../adminPortal/aP.html";
+  });
+
+});
+
+// Create Agent
 function createAgent() {
-  alert("CREATE AGENT CLICKED");
   window.location.href = "../createAgent/ca.html";
 }
 
+// View / Update / Delete Agents
 function manageAgents() {
-  alert("VIEW / UPDATE / DELETE AGENTS CLICKED");
-  window.location.href = "../getAgents/ga.html";
+  window.location.href = "../manageAgents/ga.html";
 }
 
+// Agent Status
 function agentStatus() {
-  alert("AGENT STATUS CLICKED");
   window.location.href = "../agentStatus/as.html";
 }

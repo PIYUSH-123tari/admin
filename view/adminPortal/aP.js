@@ -1,15 +1,14 @@
 function openAgents() {
-  alert("Agents Card Clicked");
   window.location.href = "../am/am.html";
 }
 
 function openPickup() {
-  alert("Pickup Request & Assignment Clicked");
+  
   window.location.href = "../adminPUR/adminPickupRequests.html";
 }
 
 function openPackages() {
-  alert("Packages Card Clicked");
+  
   // window.location.href = "packages.html";
 }
 

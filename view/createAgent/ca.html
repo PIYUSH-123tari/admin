@@ -11,39 +11,35 @@
   <button type="button" id="backBtn">← Back to Agent Management</button>
 </div>
 
-  <h1 id="formTitle">CREATE AGENT</h1>
+<h1 id="formTitle">CREATE AGENT</h1>
 
-  <form id="agentForm" enctype="multipart/form-data">
+<form id="agentForm" enctype="multipart/form-data">
 
-    <input type="text" name="agent_name" placeholder="AGENT NAME" required />
+  <label>Agent Name</label>
+  <input type="text" name="agent_name" placeholder="Enter agent name" required />
 
-    <textarea name="agent_address" placeholder="AGENT ADDRESS" required></textarea>
+  <label>Agent Address</label>
+  <textarea name="agent_address" placeholder="Enter agent address" required></textarea>
 
-    <input type="tel" name="agent_phoneNo" placeholder="PHONE NUMBER" required />
+  <label>Phone Number</label>
+  <input type="tel" name="agent_phoneNo" placeholder="Enter phone number" required />
 
-    <input type="email" name="agent_email" placeholder="EMAIL" required />
+  <label>Email Address</label>
+  <input type="email" name="agent_email" placeholder="Enter email" required />
 
-    <input type="password" name="password" placeholder="PASSWORD" required />
+  <label>Password</label>
+  <input type="password" name="password" placeholder="Enter password" required />
 
-    <label for="pass_photo">PASSPORT SIZE PHOTO</label>
-    <input type="file" name="passport_photo" id="pass_photo" accept=".jpg,.jpeg,.png" required />
+  <label for="pass_photo">Passport Size Photo</label>
+  <input type="file" name="passport_photo" id="pass_photo" accept=".jpg,.jpeg,.png" required />
 
-    <label for="adhar_photo">AADHAR CARD PHOTO</label>
-    <input type="file" name="adhar_photo" id="adhar_photo" accept=".jpg,.jpeg,.png" required />
+  <label for="adhar_photo">Aadhar Card Photo</label>
+  <input type="file" name="adhar_photo" id="adhar_photo" accept=".jpg,.jpeg,.png" required />
 
-    <!-- STATUS (DEFAULT AVAILABLE) -->
-    <label for="status">STATUS</label>
-    <select name="status" id="status">
-  <!-- <option value="" disabled selected>STATUS</option> -->
-  <option value="available" selected>AVAILABLE</option>
-  <option value="unavailable">UNAVAILABLE</option>
-</select>
+  <button type="submit" id="submitBtn">CREATE AGENT</button>
 
-   
-    <button type="submit" id="submitBtn">CREATE AGENT</button>
+</form>
 
-  </form>
-
-  <script src="ca.js"></script>
+<script src="ca.js"></script>
 </body>
 </html>

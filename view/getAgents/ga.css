@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+  background: linear-gradient(135deg, #d4f5e9, #b8f1dd);
   padding: 30px;
 }
 
@@ -10,6 +10,7 @@ body {
   margin-bottom: 40px;
   font-size: 32px;
   letter-spacing: 1px;
+  color: #0f9d58;
 }
 
 .top-bar {
@@ -18,16 +19,17 @@ body {
 
 #backBtn {
   padding: 8px 16px;
-  background: #2c3e50;
+  background: #0f9d58;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: 0.3s;
+  font-weight: 600;
 }
 
 #backBtn:hover {
-  background: #1a252f;
+  background: #0b7d45;
 }
 
 .agent-container {
@@ -40,8 +42,9 @@ body {
   background: white;
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0, 128, 0, 0.15);
   transition: 0.3s;
+  border-top: 6px solid #0f9d58;
 }
 
 .agent-card:hover {
@@ -55,7 +58,6 @@ body {
   align-items: flex-start;
 }
 
-
 .image-box {
   text-align: center;
   flex: 1;
@@ -63,24 +65,30 @@ body {
 
 .image-box img {
   width: 100%;
-  height: auto;              /* 🔥 full image height */
-  max-height: 220px;         /* prevent too large images */
-  object-fit: contain;       /* 🔥 show full image */
+  height: auto;
+  max-height: 220px;
+  object-fit: contain;
   border-radius: 10px;
-  border: 1px solid #ddd;
-  background: #f8f8f8;
+  border: 1px solid #d0e8d8;
+  background: #f8fdf9;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
+.image-box img:hover {
+  transform: scale(1.05);
+}
 
 .image-box p {
   margin-top: 6px;
   font-size: 13px;
   font-weight: 600;
-  color: #555;
+  color: #0f5132;
 }
 
 .agent-details h3 {
   margin: 10px 0 5px 0;
+  color: #0f9d58;
 }
 
 .agent-details p {
@@ -88,51 +96,32 @@ body {
   font-size: 14px;
 }
 
-.status-available {
-  color: green;
-  font-weight: bold;
-}
-
-.status-unavailable {
-  color: red;
-  font-weight: bold;
-}
-
+/* Action Button */
 .action-buttons {
   margin-top: 15px;
   display: flex;
-  gap: 10px;
 }
 
 .action-buttons button {
   flex: 1;
-  padding: 8px;
+  padding: 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   transition: 0.3s;
 }
 
 .update-btn {
-  background: #f39c12;
+  background: #0f9d58;
   color: white;
 }
 
 .update-btn:hover {
-  background: #d68910;
+  background: #0b7d45;
 }
 
-.delete-btn {
-  background: #e74c3c;
-  color: white;
-}
-
-.delete-btn:hover {
-  background: #c0392b;
-}
-
-/* Modal Background */
+/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -143,10 +132,9 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
-/* Large Image */
 .modal-content {
   display: block;
   margin: auto;
@@ -156,7 +144,6 @@ body {
   animation: zoomIn 0.3s ease-in-out;
 }
 
-/* Close Button */
 .close-btn {
   position: absolute;
   top: 20px;
@@ -167,18 +154,33 @@ body {
   cursor: pointer;
 }
 
-/* Hover Effect */
-.image-box img {
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.image-box img:hover {
-  transform: scale(1.05);
-}
-
-/* Zoom Animation */
 @keyframes zoomIn {
   from { transform: scale(0.7); }
   to { transform: scale(1); }
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: -300px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  transition: 0.4s ease;
+  z-index: 9999;
+}
+
+.toast.show {
+  right: 20px;
+}
+
+.toast.success {
+  background: #0f9d58;
+}
+
+.toast.error {
+  background: #d32f2f;
 }
