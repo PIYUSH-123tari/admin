@@ -1,0 +1,225 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --green-dark: #2d7a4f;
+  --green-mid: #4caf7d;
+  --green-light: #e8f5ee;
+  --green-pale: #f3fbf6;
+  --green-accent: #34c471;
+  --text-dark: #1a3328;
+  --text-mid: #4a6b59;
+  --text-soft: #85a895;
+  --white: #ffffff;
+  --shadow-sm: 0 2px 8px rgba(45,122,79,0.10);
+  --shadow-md: 0 6px 24px rgba(45,122,79,0.13);
+  --radius: 16px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--green-pale);
+  min-height: 100vh;
+  padding: 0 0 40px 0;
+  color: var(--text-dark);
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+  box-shadow: 0 4px 16px rgba(45,122,79,0.18);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header h2 {
+  color: var(--white);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
+  flex: 1;
+}
+
+.spacer {
+  width: 80px;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.18);
+  color: var(--white);
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.15s;
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.28);
+  transform: translateX(-2px);
+}
+
+.back-btn:active {
+  transform: translateX(-1px) scale(0.97);
+}
+
+/* ── Wrapper ── */
+.table-wrapper {
+  margin: 24px 16px 0;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* ── States ── */
+.loading-state,
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 60px 20px;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--green-light);
+  border-top-color: var(--green-accent);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Table ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+thead tr {
+  background: linear-gradient(90deg, var(--green-dark), var(--green-mid));
+}
+
+th {
+  color: var(--white);
+  padding: 13px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--green-light);
+  color: var(--text-mid);
+  vertical-align: middle;
+  line-height: 1.45;
+}
+
+/* Assignment ID pill */
+td:first-child {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: var(--green-dark);
+  background: var(--green-light);
+  border-radius: 6px;
+  word-break: break-all;
+  min-width: 160px;
+}
+
+/* Category badge */
+td:nth-child(2) span {
+  display: inline-block;
+  background: linear-gradient(135deg, #e0f7ea, #c8f0d8);
+  color: var(--green-dark);
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+
+/* Weight highlight */
+td:nth-child(4) {
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+/* Date subtle */
+td:nth-child(5) {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+tbody tr {
+  transition: background 0.15s;
+  animation: fadeIn 0.3s ease both;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: var(--green-pale);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+tbody tr:nth-child(1)  { animation-delay: 0.04s; }
+tbody tr:nth-child(2)  { animation-delay: 0.08s; }
+tbody tr:nth-child(3)  { animation-delay: 0.12s; }
+tbody tr:nth-child(4)  { animation-delay: 0.16s; }
+tbody tr:nth-child(5)  { animation-delay: 0.20s; }
+tbody tr:nth-child(6)  { animation-delay: 0.24s; }
+tbody tr:nth-child(7)  { animation-delay: 0.28s; }
+tbody tr:nth-child(8)  { animation-delay: 0.32s; }
+
+/* ── Mobile horizontal scroll for table ── */
+@media (max-width: 600px) {
+  .table-wrapper {
+    margin: 16px 10px 0;
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+
+  .header h2 {
+    font-size: 1rem;
+  }
+
+  th, td {
+    padding: 10px 10px;
+    font-size: 0.78rem;
+  }
+}

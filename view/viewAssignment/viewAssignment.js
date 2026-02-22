@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       // 🔹 If collection exists → Show View
       document.getElementById("viewCollection").addEventListener("click", () => {
         localStorage.setItem("assignmentId", data._id);
-        window.location.href = "../createCollection/viewCollection.html";
+        window.location.href = "../viewCollection/viewCollection.html";
       });
     }
 
