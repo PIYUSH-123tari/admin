@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Collection</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="createCollection.css">
+</head>
+<body>
+
+<!-- 🔙 Back Button (Outside Card) -->
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="form-container">
+  <h2>Create Collection</h2>
+
+  <form id="collectionForm">
+
+    <div class="input-group">
+      <label>Category</label>
+      <select id="category" required></select>
+    </div>
+
+    <div class="input-group">
+      <label>Waste Description</label>
+      <input type="text" id="product_description" placeholder="Enter waste description" required>
+    </div>
+
+    <div class="input-group">
+      <label>Actual Weight (kg)</label>
+      <input type="number" id="actual_weight" placeholder="Enter weight in kg" required min="0">
+    </div>
+
+    <div class="input-group">
+      <label>Received Time</label>
+      <input type="datetime-local" id="received_time" required>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Collection</button>
+
+  </form>
+</div>
+
+<script src="createCollection.js"></script>
+</body>
+</html>

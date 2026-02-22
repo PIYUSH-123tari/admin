@@ -1,0 +1,66 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f8f4;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #2e7d32;
+}
+
+.back-btn {
+  background: #444;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card p {
+  margin: 8px 0;
+}
+
+.section-title {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.btn-group {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.create-btn {
+  background: #2e7d32;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: #c62828;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

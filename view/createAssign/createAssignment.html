@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Assignment</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f9b0f, #56ab2f);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 40px;
+    }
+
+    /* Back Button OUTSIDE card */
+    .back-container {
+      width: 420px;
+      margin-bottom: 15px;
+    }
+
+    .back-btn {
+      background: #ffffff;
+      color: #2e7d32;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .back-btn:hover {
+      background: #e8f5e9;
+    }
+
+    .form-container {
+      background: #ffffff;
+      padding: 30px;
+      width: 420px;
+      border-radius: 14px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1b5e20;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 6px;
+      color: #2e7d32;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #2e7d32;
+      outline: none;
+      box-shadow: 0 0 5px rgba(46,125,50,0.3);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 5px;
+    }
+
+    .submit-btn:hover {
+      background: #1b5e20;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Back button ABOVE card -->
+  <div class="back-container">
+    <button class="back-btn" onclick="goBack()">← Back</button>
+  </div>
+
+  <div class="form-container">
+    <h2>Create Assignment</h2>
+
+    <form id="assignmentForm">
+
+      <label>Assigned Date</label>
+      <input type="date" id="assigned_date" required>
+
+      <label>Assigned Time (HH:MM:SS)</label>
+      <input type="time" id="assigned_time" step="1" required>
+
+      <label>Agent ObjectId</label>
+      <input type="text" id="agentId" placeholder="Enter Agent Id" required>
+
+      <button type="submit" class="submit-btn">Create Assignment</button>
+
+    </form>
+  </div>
+
+  <script src="createAssignment.js"></script>
+
+</body>
+</html>

@@ -5,6 +5,11 @@ const cors=require("cors");
 const corsOptions=require("./config/corsOptions");
 const agentStatusRoutes = require("./router/agentStatusRoutes");
 const adminRoutes = require("./router/adminPickupRoutes");
+const assignmentRoutes = require("./router/assignmentRoutes");
+
+const collectedRoutes = require("./router/collectedRoutes");
+
+
 
 const app = express();
 connectDB();
@@ -32,7 +37,9 @@ app.use("/uploads", express.static("uploads"));
 
 app.use("/api", agentStatusRoutes);
 app.use("/api/admin", adminRoutes);
-
+app.use("/api/assignment", assignmentRoutes);
+app.use("/api/collected", collectedRoutes);
+app.use("/api/category", require("./router/categoryRoutes"));
 
 app.listen(3500, () => {
   console.log("Server running on port 3500");

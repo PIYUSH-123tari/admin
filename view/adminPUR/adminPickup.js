@@ -64,12 +64,36 @@ document.addEventListener("DOMContentLoaded", async () => {
             </span>
           </p>
 
-          <button class="assign-btn">Create Assignment</button>
+         ${request.status === "pending" 
+  ? `<button class="assign-btn" data-id="${request._id}">Create Assignment</button>`
+  : `<button class="view-btn" data-id="${request._id}">View Assignment</button>`
+}
         </div>
       `;
 
       container.appendChild(card);
 
+
+      // Create Assignment Click
+const assignBtn = card.querySelector(".assign-btn");
+if (assignBtn) {
+  assignBtn.addEventListener("click", () => {
+    console.log("Request ID:", assignBtn.dataset.id);  // ← add this
+    console.log("Full request:", request); 
+    localStorage.setItem("pickupRequestId", assignBtn.dataset.id);
+    window.location.href = "../createAssign/createAssignment.html";
+  });
+}
+
+// View Assignment Click
+// View Assignment Click
+const viewBtn = card.querySelector(".view-btn");
+if (viewBtn) {
+  viewBtn.addEventListener("click", () => {
+    localStorage.setItem("viewPickupId", viewBtn.dataset.id);
+    window.location.href = "../viewAssignment/viewAssignment.html";
+  });
+}
       // Modal Image Click
       const img = card.querySelector("img");
       img.addEventListener("click", () => {

@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+
+/* 🔙 Back Button */
+.back-btn {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  padding: 8px 18px;
+  border: none;
+  background: white;
+  color: #11998e;
+  font-weight: 500;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.back-btn:hover {
+  background: #11998e;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* 🟢 Glass Card */
+.form-container {
+  width: 420px;
+  padding: 35px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: white;
+  font-weight: 600;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+}
+
+input, select {
+  width: 100%;
+  padding: 11px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.4);
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  background: white;
+  color: #11998e;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #0f9b85;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-10px);}
+  to {opacity: 1; transform: translateY(0);}
+}

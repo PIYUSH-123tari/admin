@@ -14,11 +14,11 @@ exports.getRegionPickupRequests = async (req, res) => {
     }
 
     const pickupRequests = await PickupRequest.find({
-      region_Id: admin.region_Id
-    })
-      .populate("user", "name email")
-      .populate("category", "category_name")
-      .sort({ createdAt: -1 });
+  region_Id: admin.region_Id
+})
+.populate("user", "name email")
+.populate("category", "category_name")
+.sort({ createdAt: -1 });
 
     res.status(200).json(pickupRequests);
 
