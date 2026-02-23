@@ -15,7 +15,7 @@ function createAgent() {
 
 // View / Update / Delete Agents
 function manageAgents() {
-  window.location.href = "../manageAgents/ga.html";
+  window.location.href = "../getAgents/ga.html";
 }
 
 // Agent Status
