@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // ── Notification bell → open notifications page ──
   notifBell.addEventListener("click", () => {
-    window.location.href = "../adminPUR/adminNotifications.html";
+    window.location.href = "../adminN/adminNotifications.html";
   });
 
   // ── Render initial badge ──

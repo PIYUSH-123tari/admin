@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Notifications</title>
+  <link rel="stylesheet" href="adminNotifications.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="topbar">
+    <button class="back-btn" id="backBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back
+    </button>
+    <h1 class="page-title">Notifications</h1>
+    <button class="clear-btn" id="clearAllBtn">Clear All</button>
+  </nav>
+
+  <div class="filter-bar">
+    <button class="filter-tab active" data-filter="all">All</button>
+    <button class="filter-tab" data-filter="update">Updates</button>
+    <button class="filter-tab" data-filter="delete">Deletions</button>
+  </div>
+
+  <div class="notif-container" id="notifContainer"></div>
+
+  <script src="adminNotifications.js"></script>
+</body>
+</html>
