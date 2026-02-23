@@ -23,4 +23,7 @@ router.get("/", async (req, res) => {
 router.post("/create", collectedController.createCollection);
 router.get("/assignment/:assignmentId", collectedController.getCollectionByAssignment);
 
+// NEW: delete collected by its _id
+router.delete("/delete/:collectedId", collectedController.deleteCollection);
+
 module.exports = router;

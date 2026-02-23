@@ -1,110 +1,196 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@600;700&display=swap');
+
+:root {
+  --green-dark: #1a6b3c;
+  --green-mid: #2d9b5a;
+  --green-light: #e8f5ee;
+  --text: #1a2e22;
+  --muted: #6b8f79;
+  --border: #d4e8dc;
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--green-light);
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  background: linear-gradient(135deg, #11998e, #38ef7d);
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
 }
 
-/* 🔙 Back Button */
+body::before {
+  content: '';
+  position: fixed;
+  top: -120px; right: -120px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(52,201,116,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -100px; left: -100px;
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(26,107,60,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.back-container {
+  width: 460px;
+  max-width: 100%;
+  margin-bottom: 12px;
+}
+
 .back-btn {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  padding: 8px 18px;
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: white;
-  color: #11998e;
+  color: var(--green-dark);
+  border: 1.5px solid var(--border);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 13px;
   font-weight: 500;
-  border-radius: 25px;
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  font-family: 'DM Sans', sans-serif;
 }
-
 .back-btn:hover {
-  background: #11998e;
+  background: var(--green-dark);
   color: white;
-  transform: translateY(-2px);
+  border-color: var(--green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(26,107,60,0.25);
 }
 
-/* 🟢 Glass Card */
-.form-container {
-  width: 420px;
-  padding: 35px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-  animation: fadeIn 0.5s ease-in-out;
+.card {
+  background: #ffffff;
+  width: 460px;
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 20px 40px rgba(26,107,60,0.10);
+  overflow: hidden;
+  animation: rise 0.45s cubic-bezier(.22,.68,0,1.2) both;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 25px;
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-header {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+  padding: 28px 32px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.card-header::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 160px; height: 160px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+.card-header h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
   color: white;
-  font-weight: 600;
+  letter-spacing: -0.3px;
+  position: relative;
+}
+.card-header p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 5px;
+  position: relative;
 }
 
-/* Inputs */
-.input-group {
-  margin-bottom: 18px;
+.card-body {
+  padding: 28px 32px 32px;
+}
+
+.field, .input-group {
+  margin-bottom: 20px;
 }
 
 label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
-  color: white;
-  font-weight: 500;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--muted);
+  margin-bottom: 8px;
 }
 
 input, select {
   width: 100%;
-  padding: 11px;
-  border-radius: 8px;
-  border: none;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
   font-size: 14px;
-  transition: 0.3s;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: #fafcfb;
+  transition: all 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
 }
-
 input:focus, select:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255,255,255,0.4);
+  border-color: var(--green-mid);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(45,155,90,0.12);
 }
 
-/* Submit Button */
+.select-wrapper {
+  position: relative;
+}
+.select-wrapper::after {
+  content: '▾';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+  font-size: 13px;
+}
+
 .submit-btn {
   width: 100%;
-  padding: 13px;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+  color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 15px;
   font-weight: 600;
-  background: white;
-  color: #11998e;
+  font-family: 'Sora', sans-serif;
   cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s;
+  transition: all 0.25s;
+  margin-top: 8px;
+  letter-spacing: 0.2px;
 }
-
 .submit-btn:hover {
-  background: #0f9b85;
-  color: white;
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 24px rgba(26,107,60,0.35);
 }
+.submit-btn:active { transform: translateY(0); }
 
-/* Animation */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-10px);}
-  to {opacity: 1; transform: translateY(0);}
+/* 🔙 Place Back Button at Left Side of Card */
+.back-btn {
+  position: absolute;
+  top: 40px;              /* aligns vertically with card */
+  left: calc(50% - 230px); /* half of card width (460px / 2) */
 }
