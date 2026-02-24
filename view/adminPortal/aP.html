@@ -3,36 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
+  <title>EcoLoop – Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="aP.css" />
 </head>
 <body>
 
-  <h1 class="title">Admin Dashboard</h1>
-
-  <div class="card-container">
-
-    <!-- Card 1 -->
-    <div class="card" onclick="openAgents()">
-      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Agents">
-      <p>AGENTS</p>
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="navbar-logo">
+      <div class="logo-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="24" height="24">
+          <path fill="white" d="M32 6l6 12H26l6-12z"/>
+          <path fill="none" stroke="white" stroke-width="5" stroke-linecap="round" d="M20 18 A16 16 0 1 0 44 18"/>
+          <polyline fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" points="44,10 44,18 52,18"/>
+        </svg>
+      </div>
+      <span class="logo-text">Eco<strong>Loop</strong></span>
     </div>
 
-    <!-- Card 2 -->
-    <div class="card" onclick="openPickup()">
-      <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Pickup">
-      <p>PICKUP REQUEST & ASSIGNMENT</p>
+    <div class="navbar-center">
+      <span class="nav-badge">Admin Dashboard</span>
     </div>
 
-    <!-- Card 3 -->
-    <div class="card" onclick="openPackages()">
-      <img src="https://cdn-icons-png.flaticon.com/512/679/679922.png" alt="Packages">
-      <p>PACKAGES</p>
+    <button id="logoutBtn" class="logout-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+        <polyline points="16 17 21 12 16 7"/>
+        <line x1="21" y1="12" x2="9" y2="12"/>
+      </svg>
+      Logout
+    </button>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="hero">
+      <h1 class="title">Welcome Back, Admin 👋</h1>
+      <p class="subtitle">What would you like to manage today?</p>
     </div>
 
-  </div>
+    <div class="card-container">
 
-  <button id="logoutBtn" class="logout-btn">Logout</button>
+      <!-- Card 1 – Agents -->
+      <div class="card" onclick="openAgents()" style="--i:0">
+        <div class="card-icon-wrap">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Agents">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Agents</h2>
+          <p class="card-desc">View and manage all delivery agents on the platform</p>
+        </div>
+        <div class="card-cta">
+          Open
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+      <!-- Card 2 – Pickup -->
+      <div class="card" onclick="openPickup()" style="--i:1">
+        <div class="card-icon-wrap">
+          <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Pickup">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Pickup Requests</h2>
+          <p class="card-desc">Review pickup requests and assign agents for collection</p>
+        </div>
+        <div class="card-cta">
+          Open
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+      <!-- Card 3 – Warehouse -->
+      <div class="card" onclick="openPackages()" style="--i:2">
+        <div class="card-icon-wrap">
+          <img src="https://cdn-icons-png.flaticon.com/512/679/679922.png" alt="Packages">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Warehouse</h2>
+          <p class="card-desc">View Warehouse details and list of Categories</p>
+        </div>
+        <div class="card-cta">
+          Open
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </main>
 
   <script src="aP.js"></script>
 </body>

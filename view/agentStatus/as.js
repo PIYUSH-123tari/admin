@@ -17,15 +17,23 @@ async function loadAgents() {
 
     agents.forEach(agent => {
 
-      const statusBadge =
-        agent.status === "available"
-          ? `<span class="badge available">Available</span>`
-          : `<span class="badge unavailable">Unavailable</span>`;
+      const statusBadge = agent.status === "available"
+        ? `<span class="badge available">Available</span>`
+        : `<span class="badge unavailable">Unavailable</span>`;
+
+      const photoHtml = agent.passport_photo
+        ? `<img src="${agent.passport_photo}" alt="Photo" class="agent-thumb" />`
+        : `<div class="no-photo">No Photo</div>`;
 
       const row = document.createElement("tr");
 
       row.innerHTML = `
-        <td>${agent.agent_name}</td>
+        <td>
+          <div class="agent-name-cell">
+            ${photoHtml}
+            <span>${agent.agent_name}</span>
+          </div>
+        </td>
         <td class="object-id">${agent._id}</td>
         <td>${statusBadge}</td>
         <td>${agent.assigned_pending_order}</td>

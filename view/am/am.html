@@ -3,39 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agent Management</title>
+  <title>EcoLoop – Agent Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="am.css" />
 </head>
 <body>
-  <div class="back-container">
-    <button id="backBtn">← Back to Admin portal </button>
-  </div>
 
-  <h1 class="title">AGENT MANAGEMENT</h1>
-
-  <div class="card-container">
-
-    <!-- Card 1 -->
-    <div class="card" onclick="createAgent()">
-      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Create Agent">
-      <p>CREATE AGENT</p>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-logo">
+      <div class="logo-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="24" height="24">
+          <path fill="white" d="M32 6l6 12H26l6-12z"/>
+          <path fill="none" stroke="white" stroke-width="5" stroke-linecap="round" d="M20 18 A16 16 0 1 0 44 18"/>
+          <polyline fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" points="44,10 44,18 52,18"/>
+        </svg>
+      </div>
+      <span class="logo-text">Eco<strong>Loop</strong></span>
     </div>
 
-    <!-- Card 2 -->
-    <div class="card" onclick="manageAgents()">
-      <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Manage Agents">
-      <p>VIEW / UPDATE / DELETE AGENTS</p>
+    <div class="navbar-center">
+      <span class="nav-badge">Agent Management</span>
     </div>
 
-    <!-- Card 3 -->
-    <div class="card" onclick="agentStatus()">
-      <img src="https://cdn-icons-png.flaticon.com/512/1827/1827392.png" alt="Agent Status">
-      <p>AGENT STATUS</p>
+    <button id="backBtn" class="back-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to Admin Portal
+    </button>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="hero">
+      <h1 class="title">Agent Management</h1>
+      <p class="subtitle">Create, update, and monitor your delivery agents</p>
     </div>
 
-  </div>
+    <div class="card-container">
+
+      <!-- Card 1 – Create Agent -->
+      <div class="card" onclick="createAgent()" style="--i:0">
+        <div class="card-icon-wrap">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Create Agent">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Create Agent</h2>
+          <p class="card-desc">Register a new delivery agent on the platform</p>
+        </div>
+        <div class="card-cta">
+          Open
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+      <!-- Card 2 – Manage Agents -->
+      <div class="card" onclick="manageAgents()" style="--i:1">
+        <div class="card-icon-wrap">
+          <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Manage Agents">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">View / Edit Agents</h2>
+          <p class="card-desc">Update or remove existing agents from the system</p>
+        </div>
+        <div class="card-cta">
+          Open
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+      <!-- Card 3 – Agent Status -->
+      <div class="card" onclick="agentStatus()" style="--i:2">
+        <div class="card-icon-wrap">
+          <img src="https://cdn-icons-png.flaticon.com/512/1827/1827392.png" alt="Agent Status">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Agent Status</h2>
+          <p class="card-desc">Monitor availability and activity of all agents</p>
+        </div>
+        <div class="card-cta">
+          Open
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </main>
 
   <script src="am.js"></script>
 </body>
 </html>
-

@@ -1,8 +1,9 @@
 const Collected = require("../model/Collected");
 const Assignment = require("../model/Assignment");
 const PickupRequest = require("../model/PickupRequest");
+const Agent = require("../model/Agent"); // ✅ ADDED
 
-// ✅ CREATE COLLECTION (existing logic + status update)
+// ✅ CREATE COLLECTION
 exports.createCollection = async (req, res) => {
   try {
     const {
@@ -14,7 +15,7 @@ exports.createCollection = async (req, res) => {
       received_time
     } = req.body;
 
-    // Check if already collected (existing logic)
+    // Check if already collected
     const existing = await Collected.findOne({ assignment: assignmentId });
     if (existing) {
       return res.status(400).json({ message: "Collection already created for this assignment." });
@@ -39,15 +40,20 @@ exports.createCollection = async (req, res) => {
       });
     }
 
+    // ✅ DECREMENT agent's assigned_pending_order by 1 (job completed)
+    await Agent.findByIdAndUpdate(agentId, {
+      $inc: { assigned_pending_order: -1 }
+    });
+
     res.status(201).json({ message: "Collection created successfully." });
 
   } catch (error) {
-    console.error(error);
+    console.error("createCollection error:", error);
     res.status(500).json({ message: "Server Error" });
   }
 };
 
-// ✅ GET COLLECTION BY ASSIGNMENT (existing logic unchanged)
+// ✅ GET COLLECTION BY ASSIGNMENT (unchanged)
 exports.getCollectionByAssignment = async (req, res) => {
   try {
     const data = await Collected.findOne({ assignment: req.params.assignmentId })
@@ -63,8 +69,7 @@ exports.getCollectionByAssignment = async (req, res) => {
   }
 };
 
-// ✅ NEW: Delete Collected by its _id
-// Resets PickupRequest status → assigned
+// ✅ Delete Collected by its _id
 exports.deleteCollection = async (req, res) => {
   try {
     const { collectedId } = req.params;
@@ -85,6 +90,12 @@ exports.deleteCollection = async (req, res) => {
 
     // Delete the Collected record
     await Collected.findByIdAndDelete(collectedId);
+
+    // ✅ INCREMENT agent's assigned_pending_order by 1
+    // (collection deleted = assignment is active again)
+    await Agent.findByIdAndUpdate(collected.agent, {
+      $inc: { assigned_pending_order: 1 }
+    });
 
     res.json({ message: "Collection deleted successfully" });
 
