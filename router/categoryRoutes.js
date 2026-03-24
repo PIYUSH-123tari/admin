@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Category = require("../model/Category");
+const auth = require("../middleware/authMiddleware");
+
+router.use(auth); // Protect category routes
 
 // GET all categories
 router.get("/", async (req, res) => {

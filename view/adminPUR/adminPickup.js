@@ -1,16 +1,16 @@
 // ═══════════════════════════════════════════════════
-//  Shared Notification Helpers (localStorage-based)
+//  Shared Notification Helpers (sessionStorage-based)
 // ═══════════════════════════════════════════════════
 
 const NOTIF_KEY = "admin_pickup_notifications";
 
 function getNotifications() {
-  try { return JSON.parse(localStorage.getItem(NOTIF_KEY)) || []; }
+  try { return JSON.parse(sessionStorage.getItem(NOTIF_KEY)) || []; }
   catch { return []; }
 }
 
 function saveNotifications(list) {
-  localStorage.setItem(NOTIF_KEY, JSON.stringify(list.slice(0, 100)));
+  sessionStorage.setItem(NOTIF_KEY, JSON.stringify(list.slice(0, 100)));
 }
 
 function addNotification(type, message, requestId) {
@@ -54,12 +54,12 @@ function showToast(type, message) {
 const SNAPSHOT_KEY = "admin_pickup_snapshot";
 
 function getSnapshot() {
-  try { return JSON.parse(localStorage.getItem(SNAPSHOT_KEY)) || {}; }
+  try { return JSON.parse(sessionStorage.getItem(SNAPSHOT_KEY)) || {}; }
   catch { return {}; }
 }
 
 function saveSnapshot(map) {
-  localStorage.setItem(SNAPSHOT_KEY, JSON.stringify(map));
+  sessionStorage.setItem(SNAPSHOT_KEY, JSON.stringify(map));
 }
 
 function buildSnapshot(requests) {
@@ -107,7 +107,10 @@ function detectChanges(oldMap, newRequests) {
 
 async function pollChanges(adminId) {
   try {
-    const res  = await fetch(`http://localhost:3500/api/admin/pickup-requests/${adminId}`);
+    const token = sessionStorage.getItem("admin_token");
+    const res  = await fetch(`http://localhost:3500/api/admin/pickup-requests/${adminId}`, {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     const data = await res.json();
     const old  = getSnapshot();
     if (Object.keys(old).length > 0) {
@@ -123,7 +126,7 @@ async function pollChanges(adminId) {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-  const adminId = localStorage.getItem("admin_Id");
+  const adminId = sessionStorage.getItem("admin_Id");
   if (!adminId) { alert("Admin not logged in"); return; }
 
   const container  = document.getElementById("requestsContainer");
@@ -148,7 +151,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // ── Fetch & render cards ──
   try {
-    const response = await fetch(`http://localhost:3500/api/admin/pickup-requests/${adminId}`);
+    const token = sessionStorage.getItem("admin_token");
+    const response = await fetch(`http://localhost:3500/api/admin/pickup-requests/${adminId}`, {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     const requests = await response.json();
 
     // First load: save snapshot (baseline for future polls)
@@ -211,7 +217,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         assignBtn.addEventListener("click", () => {
           console.log("Request ID:", assignBtn.dataset.id);
           console.log("Full request:", request);
-          localStorage.setItem("pickupRequestId", assignBtn.dataset.id);
+          sessionStorage.setItem("pickupRequestId", assignBtn.dataset.id);
           window.location.href = "../createAssign/createAssignment.html";
         });
       }
@@ -220,7 +226,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const viewBtn = card.querySelector(".view-btn");
       if (viewBtn) {
         viewBtn.addEventListener("click", () => {
-          localStorage.setItem("viewPickupId", viewBtn.dataset.id);
+          sessionStorage.setItem("viewPickupId", viewBtn.dataset.id);
           window.location.href = "../viewAssignment/viewAssignment.html";
         });
       }

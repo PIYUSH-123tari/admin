@@ -1,5 +1,9 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const managers = require("../model/Manager");
+
+const JWT_SECRET = process.env.JWT_SECRET || "ecoloop_admin_secret_key_2026";
+const TOKEN_EXPIRY = "8h";
 
 const loginManager = async (req, res) => {
   try {
@@ -23,8 +27,16 @@ const loginManager = async (req, res) => {
       return res.status(401).json({ message: "Invalid password" });
     }
 
+    // Generate JWT token
+    const token = jwt.sign(
+      { admin_Id: findManager.admin_Id, region_Id: findManager.region_Id },
+      JWT_SECRET,
+      { expiresIn: TOKEN_EXPIRY }
+    );
+
     return res.status(200).json({
       message: "Login successful",
+      token,
       admin_Id: findManager.admin_Id,
       region_Id: findManager.region_Id
     });

@@ -1,5 +1,5 @@
-const assignmentId = localStorage.getItem("assignmentId");
-const agentId = localStorage.getItem("agentId");
+const assignmentId = sessionStorage.getItem("assignmentId");
+const agentId = sessionStorage.getItem("agentId");
 
 if (!assignmentId || !agentId) {
   alert("Invalid Access");
@@ -9,7 +9,10 @@ if (!assignmentId || !agentId) {
 // Load categories
 document.addEventListener("DOMContentLoaded", async () => {
 
-  const res = await fetch("http://localhost:3500/api/category");
+  const token = sessionStorage.getItem("admin_token");
+  const res = await fetch("http://localhost:3500/api/category", {
+    headers: { "Authorization": `Bearer ${token}` }
+  });
   const categories = await res.json();
 
   const select = document.getElementById("category");
@@ -31,9 +34,13 @@ document.getElementById("collectionForm").addEventListener("submit", async (e) =
   const actual_weight = document.getElementById("actual_weight").value;
   const received_time = document.getElementById("received_time").value;
 
+  const token = sessionStorage.getItem("admin_token");
   const res = await fetch("http://localhost:3500/api/collected/create", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
     body: JSON.stringify({
       assignmentId,
       agentId,
@@ -49,8 +56,8 @@ document.getElementById("collectionForm").addEventListener("submit", async (e) =
   if (res.ok) {
     alert("Collection Created Successfully!");
 
-    localStorage.removeItem("assignmentId");
-    localStorage.removeItem("agentId");
+    sessionStorage.removeItem("assignmentId");
+    sessionStorage.removeItem("agentId");
 
     window.location.href = "../viewAssignment/viewAssignment.html";
   } else {

@@ -14,8 +14,8 @@ function openPackages() {
 
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
-  // Clear everything from localStorage
-  localStorage.clear();
+  // Clear everything from sessionStorage
+  sessionStorage.clear();
 
   // Redirect to login page
   window.location.href = "../register/register.html";

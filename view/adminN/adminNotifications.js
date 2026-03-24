@@ -63,7 +63,11 @@ function render() {
 
 async function dismissLog(logId) {
   try {
-    await fetch(`${BASE}/${logId}`, { method: "DELETE" });
+    const token = sessionStorage.getItem("admin_token");
+    await fetch(`${BASE}/${logId}`, { 
+      method: "DELETE",
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     allLogs = allLogs.filter(n => n._id !== logId);
     render();
   } catch (e) {
@@ -73,7 +77,7 @@ async function dismissLog(logId) {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-  const adminId = localStorage.getItem("admin_Id");
+  const adminId = sessionStorage.getItem("admin_Id");
   if (!adminId) { alert("Admin not logged in"); return; }
 
   document.getElementById("backBtn").addEventListener("click", () => {
@@ -82,7 +86,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.getElementById("clearAllBtn").addEventListener("click", async () => {
     try {
-      await fetch(`${BASE}/clear/${adminId}`, { method: "DELETE" });
+      const token = sessionStorage.getItem("admin_token");
+      await fetch(`${BASE}/clear/${adminId}`, { 
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${token}` }
+      });
       allLogs = [];
       render();
     } catch (e) { console.error("Clear error:", e); }
@@ -99,14 +107,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Fetch logs — safely handle non-array responses
   try {
-    const res  = await fetch(`${BASE}/${adminId}`);
+    const token = sessionStorage.getItem("admin_token");
+    const res  = await fetch(`${BASE}/${adminId}`, {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     const data = await res.json();
 
     // Guard: ensure it's an array
     allLogs = Array.isArray(data) ? data : [];
 
     // Mark all as read
-    await fetch(`${BASE}/mark-read/${adminId}`, { method: "PATCH" });
+    await fetch(`${BASE}/mark-read/${adminId}`, { 
+      method: "PATCH",
+      headers: { "Authorization": `Bearer ${token}` }
+    });
 
     render();
   } catch (e) {

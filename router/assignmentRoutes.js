@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const assignmentController = require("../controller/assignmentController");
+const auth = require("../middleware/authMiddleware");
+
+router.use(auth); // Protect all assignment routes
 
 router.post("/create", assignmentController.createAssignment);
 router.get("/pickup/:pickupId", assignmentController.getAssignmentByPickup);

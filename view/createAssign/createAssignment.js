@@ -6,7 +6,7 @@ dateInput.setAttribute("min", today);
 // Back button
 function goBack() {
   window.location.href = "../adminPUR/adminPickupRequests.html";
-  localStorage.removeItem("pickupRequestId");
+  sessionStorage.removeItem("pickupRequestId");
 }
 
 // Convert 24hr time to 12hr AM/PM format
@@ -25,7 +25,7 @@ function convertTo12Hour(time24) {
 document.getElementById("assignmentForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const pickupRequestId = localStorage.getItem("pickupRequestId");
+  const pickupRequestId = sessionStorage.getItem("pickupRequestId");
 
   const assigned_date = document.getElementById("assigned_date").value;
   const assigned_time_raw = document.getElementById("assigned_time").value;
@@ -34,9 +34,13 @@ document.getElementById("assignmentForm").addEventListener("submit", async (e) =
   // Convert time format before sending
   const assigned_time = convertTo12Hour(assigned_time_raw);
 
+  const token = sessionStorage.getItem("admin_token");
   const res = await fetch("http://localhost:3500/api/assignment/create", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
     body: JSON.stringify({
       pickupRequestId,
       agentId,
@@ -49,7 +53,7 @@ document.getElementById("assignmentForm").addEventListener("submit", async (e) =
 
   if (res.ok) {
     alert("Assignment Created!");
-    localStorage.removeItem("pickupRequestId");
+    sessionStorage.removeItem("pickupRequestId");
     window.location.href = "../adminPUR/adminPickupRequests.html";
   } else {
     alert(data.message);

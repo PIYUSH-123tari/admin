@@ -26,7 +26,7 @@ if (!fs.existsSync("uploads")) {
 }
 
 // Serve static files from the 'view' directory
-// app.use(express.static(__dirname + '/view'));
+app.use(express.static(__dirname + '/view'));
 
 
 

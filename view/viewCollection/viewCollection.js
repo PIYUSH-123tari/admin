@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // ── Back button: clear assignmentId and navigate ──
   document.getElementById("backBtn").addEventListener("click", () => {
-    localStorage.removeItem("assignmentId");
+    sessionStorage.removeItem("assignmentId");
     window.location.href = "../viewAssignment/viewAssignment.html";
   });
 
@@ -20,7 +20,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tbody        = document.getElementById("collectionBody");
 
   try {
-    const res  = await fetch("http://localhost:3500/api/collected");
+    const token = sessionStorage.getItem("admin_token");
+    const res  = await fetch("http://localhost:3500/api/collected", {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     const data = await res.json();
 
     loadingState.style.display = "none";

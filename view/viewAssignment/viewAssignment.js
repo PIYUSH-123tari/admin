@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-  const pickupId  = localStorage.getItem("viewPickupId");
+  const pickupId  = sessionStorage.getItem("viewPickupId");
   const container = document.getElementById("assignmentContainer");
   const backBtn   = document.getElementById("backBtn");
 
   // 🔙 Back Button (existing logic unchanged)
   backBtn.addEventListener("click", () => {
-    localStorage.removeItem("viewPickupId");
+    sessionStorage.removeItem("viewPickupId");
     window.location.href = "../adminPUR/adminPickupRequests.html";
   });
 
@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     // 🔹 Get Assignment by Pickup ID (existing logic unchanged)
-    const res  = await fetch(`http://localhost:3500/api/assignment/pickup/${pickupId}`);
+    const token = sessionStorage.getItem("admin_token");
+    const res  = await fetch(`http://localhost:3500/api/assignment/pickup/${pickupId}`, {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     const data = await res.json();
 
     if (!res.ok) {
@@ -27,7 +30,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // 🔹 Check if Collection already exists (existing logic unchanged)
     const collectionRes = await fetch(
-      `http://localhost:3500/api/collected/assignment/${data._id}`
+      `http://localhost:3500/api/collected/assignment/${data._id}`, {
+        headers: { "Authorization": `Bearer ${token}` }
+      }
     );
     const collectionExists = collectionRes.ok;
 
@@ -68,14 +73,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 🔹 Create Collection (existing logic unchanged)
     if (!collectionExists) {
       document.getElementById("createCollection").addEventListener("click", () => {
-        localStorage.setItem("assignmentId", data._id);
-        localStorage.setItem("agentId", data.agent._id);
+        sessionStorage.setItem("assignmentId", data._id);
+        sessionStorage.setItem("agentId", data.agent._id);
         window.location.href = "../createCollection/createCollection.html";
       });
     } else {
       // 🔹 View Collection (existing logic unchanged)
       document.getElementById("viewCollection").addEventListener("click", () => {
-        localStorage.setItem("assignmentId", data._id);
+        sessionStorage.setItem("assignmentId", data._id);
         window.location.href = "../viewCollection/viewCollection.html";
       });
 
@@ -85,7 +90,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const delRes = await fetch(
           `http://localhost:3500/api/collected/delete/${collectedId}`,
-          { method: "DELETE" }
+          { 
+            method: "DELETE",
+            headers: { "Authorization": `Bearer ${token}` }
+          }
         );
         const delData = await delRes.json();
 
@@ -105,13 +113,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const delRes = await fetch(
         `http://localhost:3500/api/assignment/delete/${data._id}`,
-        { method: "DELETE" }
+        { 
+          method: "DELETE",
+          headers: { "Authorization": `Bearer ${token}` }
+        }
       );
       const delData = await delRes.json();
 
       if (delRes.ok) {
         alert("Assignment deleted!");
-        localStorage.removeItem("viewPickupId");
+        sessionStorage.removeItem("viewPickupId");
         window.location.href = "../adminPUR/adminPickupRequests.html";
       } else {
         alert(delData.message || "Failed to delete assignment.");

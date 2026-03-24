@@ -17,8 +17,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
   alert(data.message);
 
   if (response.ok) {
-    localStorage.setItem("admin_Id", data.admin_Id);
-    localStorage.setItem("region_Id", data.region_Id);
+    sessionStorage.setItem("admin_token", data.token);
+    sessionStorage.setItem("admin_Id", data.admin_Id);
+    sessionStorage.setItem("region_Id", data.region_Id);
     window.location.href = "../adminPortal/aP.html";
   }
 });

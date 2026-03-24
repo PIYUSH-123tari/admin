@@ -3,7 +3,7 @@ const formTitle = document.getElementById("formTitle");
 const submitBtn = document.getElementById("submitBtn");
 const backBtn = document.getElementById("backBtn");
 
-const editData = JSON.parse(localStorage.getItem("editAgentData"));
+const editData = JSON.parse(sessionStorage.getItem("editAgentData"));
 
 // 🔥 Toast Function
 function showToast(message, type = "success") {
@@ -64,7 +64,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   const formData = new FormData(form);
-  const regionId = localStorage.getItem("region_Id");
+  const regionId = sessionStorage.getItem("region_Id");
   formData.append("region", regionId);
 
   let url = "http://localhost:3500/api/agents/create";
@@ -76,8 +76,10 @@ form.addEventListener("submit", async (e) => {
   }
 
   try {
+    const token = sessionStorage.getItem("admin_token");
     const res = await fetch(url, {
       method,
+      headers: { "Authorization": `Bearer ${token}` },
       body: formData
     });
 
@@ -92,7 +94,7 @@ form.addEventListener("submit", async (e) => {
 
     // 🔥 Do NOT reset immediately
     setTimeout(() => {
-      localStorage.removeItem("editAgentData");
+      sessionStorage.removeItem("editAgentData");
       window.location.href = "../getAgents/ga.html";
     }, 2500);
 

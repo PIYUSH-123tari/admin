@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const collectedController = require("../controller/collectedController");
+const auth = require("../middleware/authMiddleware");
+
+router.use(auth); // Protect collected routes
 
 
 const Collected = require("../model/Collected");

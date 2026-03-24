@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const {getAllAgentsByRegionId, createAgent, updateAgent, deleteAgent, getAgentDetails, getAllAgents} = require("../controller/agentController");
 const upload = require("../middleware/agentUpload");
-const { createAgent, getAllAgents, updateAgent } = require("../controller/agentController");
+const auth = require("../middleware/authMiddleware");
+
+router.use(auth); // Protect all agent routes
 
 router.get("/all", getAllAgents);
 

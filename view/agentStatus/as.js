@@ -9,7 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function loadAgents() {
   try {
-    const res = await fetch("http://localhost:3500/api/agents");
+    const token = sessionStorage.getItem("admin_token");
+    const res = await fetch("http://localhost:3500/api/agents", {
+      headers: { "Authorization": `Bearer ${token}` }
+    });
     const agents = await res.json();
 
     const tbody = document.querySelector("#agentTable tbody");

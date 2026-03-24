@@ -18,7 +18,7 @@ function showToast(message, type = "success") {
 
 async function loadAgents() {
 
-  const regionId = localStorage.getItem("region_Id");
+  const regionId = sessionStorage.getItem("region_Id");
 
   if (!regionId) {
     showToast("Region ID missing", "error");
@@ -26,8 +26,10 @@ async function loadAgents() {
   }
 
   try {
+    const token = sessionStorage.getItem("admin_token");
     const res = await fetch(
-      `http://localhost:3500/api/agents/all?region=${regionId}`
+      `http://localhost:3500/api/agents/all?region=${regionId}`,
+      { headers: { "Authorization": `Bearer ${token}` } }
     );
 
     const agents = await res.json();
@@ -104,7 +106,7 @@ function editAgent(agent) {
     agent_email: agent.agent_email
   };
 
-  localStorage.setItem("editAgentData", JSON.stringify(agentData));
+  sessionStorage.setItem("editAgentData", JSON.stringify(agentData));
   window.location.href = "../createAgent/ca.html";
 }
 
