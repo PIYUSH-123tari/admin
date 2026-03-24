@@ -147,6 +147,23 @@
       background: #fafcfb;
       transition: all 0.2s;
     }
+    .plus-btn {
+      background: var(--green-mid);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      width: 45px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .plus-btn:hover {
+      background: var(--green-dark);
+    }
     input:focus {
       outline: none;
       border-color: var(--green-mid);
@@ -196,7 +213,10 @@
         </div>
         <div class="field">
           <label>Agent ObjectId</label>
-          <input type="text" id="agentId" placeholder="Enter Agent Id" required>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="agentId" placeholder="Enter Agent Id" required>
+            <button type="button" class="plus-btn" onclick="openAgentSelection()">+</button>
+          </div>
         </div>
         <button type="submit" class="submit-btn">Create Assignment</button>
       </form>

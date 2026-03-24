@@ -42,7 +42,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/assignment", assignmentRoutes);
 app.use("/api/collected", collectedRoutes);
 app.use("/api/category", require("./router/categoryRoutes"));
-
+app.use("/api/warehouse", require("./router/warehouseRoutes"));
 app.use("/api/admin/notifications", pickupLogRoutes);
 
 app.listen(3500, () => {

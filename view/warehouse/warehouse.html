@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoLoop – Warehouse & Categories</title>
+  <!-- Auth Guard -->
+  <script src="../auth-guard.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="warehouse.css" />
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="navbar-logo" onclick="window.location.href='../adminPortal/aP.html'" style="cursor:pointer;">
+      <div class="logo-icon-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="24" height="24">
+          <path fill="white" d="M32 6l6 12H26l6-12z"/>
+          <path fill="none" stroke="white" stroke-width="5" stroke-linecap="round" d="M20 18 A16 16 0 1 0 44 18"/>
+          <polyline fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" points="44,10 44,18 52,18"/>
+        </svg>
+      </div>
+      <span class="logo-text">Eco<strong>Loop</strong></span>
+    </div>
+
+    <div class="navbar-center">
+      <span class="nav-badge">Warehouse Details</span>
+    </div>
+
+    <button onclick="window.location.href='../adminPortal/aP.html'" class="back-btn">
+      Back to Dashboard
+    </button>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="hero">
+      <h1 class="title">Warehouse & Categories 📦</h1>
+      <p class="subtitle">View your main warehouse information and track recyclable categories.</p>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Warehouse Info Section -->
+      <section class="warehouse-section">
+        <h2 class="section-title">Warehouse Details</h2>
+        <div id="warehouseContainer" class="warehouse-container">
+          <div class="loading-spinner">Loading Warehouse Info...</div>
+        </div>
+      </section>
+
+      <!-- Categories Section -->
+      <section class="categories-section">
+        <h2 class="section-title">Recyclable Categories</h2>
+        <div id="categoriesContainer" class="categories-container">
+          <div class="loading-spinner">Loading Categories...</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="warehouse.js"></script>
+</body>
+</html>

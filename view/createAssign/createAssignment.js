@@ -22,6 +22,31 @@ function convertTo12Hour(time24) {
   return `${h}:${minute}:${second} ${ampm}`;
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Restore form state
+  const savedDate = sessionStorage.getItem("saved_assigned_date");
+  if (savedDate) document.getElementById("assigned_date").value = savedDate;
+  
+  const savedTime = sessionStorage.getItem("saved_assigned_time");
+  if (savedTime) document.getElementById("assigned_time").value = savedTime;
+
+  // Retrieve selected Agent ID from status page
+  const selectedAgentId = sessionStorage.getItem("selectedAgentId");
+  if (selectedAgentId) {
+    document.getElementById("agentId").value = selectedAgentId;
+    sessionStorage.removeItem("selectedAgentId"); // Clean up
+  }
+});
+
+function openAgentSelection() {
+  // Save form fields before navigating
+  sessionStorage.setItem("saved_assigned_date", document.getElementById("assigned_date").value);
+  sessionStorage.setItem("saved_assigned_time", document.getElementById("assigned_time").value);
+  sessionStorage.setItem("pickingAgentForAssignment", "true");
+  
+  window.location.href = "../agentStatus/as.html";
+}
+
 document.getElementById("assignmentForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 

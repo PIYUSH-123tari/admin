@@ -8,8 +8,7 @@ function openPickup() {
 }
 
 function openPackages() {
-  
-  // window.location.href = "packages.html";
+  window.location.href = "../warehouse/warehouse.html";
 }
 
 

@@ -28,6 +28,11 @@ async function loadAgents() {
         ? `<img src="${agent.passport_photo}" alt="Photo" class="agent-thumb" />`
         : `<div class="no-photo">No Photo</div>`;
 
+      const isPicking = sessionStorage.getItem("pickingAgentForAssignment") === "true";
+      const selectBtnHtml = isPicking 
+        ? `<button class="select-agent-btn" onclick="selectAgent('${agent._id}')">Select</button>`
+        : '';
+
       const row = document.createElement("tr");
 
       row.innerHTML = `
@@ -40,6 +45,7 @@ async function loadAgents() {
         <td class="object-id">${agent._id}</td>
         <td>${statusBadge}</td>
         <td>${agent.assigned_pending_order}</td>
+        <td>${selectBtnHtml}</td>
       `;
 
       tbody.appendChild(row);
@@ -50,3 +56,9 @@ async function loadAgents() {
     console.error(error);
   }
 }
+
+window.selectAgent = function(agentId) {
+  sessionStorage.setItem("selectedAgentId", agentId);
+  sessionStorage.removeItem("pickingAgentForAssignment");
+  window.location.href = "../createAssign/createAssignment.html";
+};
