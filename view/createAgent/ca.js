@@ -5,18 +5,14 @@ const backBtn = document.getElementById("backBtn");
 
 const editData = JSON.parse(sessionStorage.getItem("editAgentData"));
 
-// 🔥 Toast Function
+// 🔥 Toast Function (Replaced with SweetAlert2)
 function showToast(message, type = "success") {
-  const toast = document.createElement("div");
-  toast.className = `toast ${type}`;
-  toast.innerText = message;
-  document.body.appendChild(toast);
-
- setTimeout(() => toast.classList.add("show"), 200);
-setTimeout(() => {
-  toast.classList.remove("show");
-  setTimeout(() => toast.remove(), 400);
-}, 3000); 
+  Swal.fire({
+    icon: type,
+    title: type === "success" ? "Success!" : "Wait a minute...",
+    text: message,
+    confirmButtonColor: type === "success" ? "#28a745" : "#d33"
+  });
 }
 
 // 🔥 IF EDIT MODE
@@ -90,13 +86,19 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
-    showToast(data.message, "success");
+    if (sessionStorage.getItem("isAutoSave") === "true") {
+      // If autosave triggered this, do not block with alert, and don't redirect.
+      // Let auth-guard logout timer handle logging out.
+      return; 
+    }
 
-    // 🔥 Do NOT reset immediately
+    alert(data.message);
+    
+    // Use setTimeout to ensure the redirect fires reliably after the alert is dismissed
     setTimeout(() => {
       sessionStorage.removeItem("editAgentData");
       window.location.href = "../getAgents/ga.html";
-    }, 2500);
+    }, 100);
 
   } catch (err) {
     console.error(err);
@@ -106,4 +108,16 @@ form.addEventListener("submit", async (e) => {
 
 backBtn.addEventListener("click", () => {
   window.location.href = "../am/am.html";
+});
+
+// ===== PASSWORD TOGGLE =====
+document.querySelector(".eye-toggle").addEventListener("click", function () {
+  const input = document.getElementById("agentPassword");
+  if (input.type === "password") {
+    input.type = "text";
+    this.textContent = "🙈";
+  } else {
+    input.type = "password";
+    this.textContent = "👁";
+  }
 });

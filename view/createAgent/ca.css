@@ -1,50 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 body {
-  background: linear-gradient(135deg, #d4f5e9, #b8f1dd);
-  font-family: Arial, sans-serif;
-  padding: 30px;
+  background: linear-gradient(135deg, #d4f5e9, #b8f1dd, #a3ead1);
+  background-size: 200% 200%;
+  animation: gradientFlow 8s ease infinite;
+  font-family: 'Poppins', sans-serif;
+  padding: 40px 20px;
+  margin: 0;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Back button container */
 .back-container {
-  max-width: 500px;
-  margin: 0 auto 15px auto;
+  max-width: 550px;
+  margin: 0 auto 20px auto;
   text-align: left;
 }
 
 /* Back button */
 #backBtn {
-  background: transparent;
+  background: #ffffff;
   color: #0f9d58;
   border: none;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
-  padding: 0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  transition: all 0.3s ease;
 }
 
 #backBtn:hover {
-  text-decoration: underline;
-  color: #0b7d45;
+  background: #0f9d58;
+  color: #ffffff;
+  box-shadow: 0 6px 12px rgba(15, 157, 88, 0.2);
+  transform: translateY(-2px);
 }
 
 h1 {
   text-align: center;
   margin-bottom: 30px;
-  color: #0f9d58;
+  color: #0c8248;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
 }
 
 /* Form Card */
 form {
-  max-width: 500px;
+  max-width: 550px;
   margin: auto;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0, 128, 0, 0.15);
-  border-top: 6px solid #0f9d58;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 128, 0, 0.1), 0 1px 3px rgba(0,0,0,0.05);
+  border-top: 8px solid #0f9d58;
+  backdrop-filter: blur(10px);
 }
 
 /* Labels */
@@ -53,40 +73,84 @@ label {
   font-size: 14px;
   color: #0f5132;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
 
 /* Inputs */
 input, textarea, select {
   width: 100%;
-  margin-bottom: 18px;
-  padding: 10px;
-  border-radius: 6px;
+  margin-bottom: 22px;
+  padding: 12px 15px;
+  border-radius: 10px;
   border: 1px solid #c8e6c9;
+  background: #fcfcfc;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
   outline: none;
-  transition: 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-sizing: border-box;
 }
 
 input:focus, textarea:focus {
   border-color: #0f9d58;
-  box-shadow: 0 0 0 3px rgba(15, 157, 88, 0.2);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(15, 157, 88, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Password Toggle */
+.password-box {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.password-box input {
+  margin-bottom: 0;
+  padding-right: 42px;
+}
+
+.eye-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.6;
+  transition: 0.2s;
+}
+
+.eye-toggle:hover {
+  opacity: 1;
 }
 
 /* Button */
-button {
+button[type="submit"] {
   width: 100%;
-  padding: 12px;
-  background: #0f9d58;
+  padding: 14px;
+  background: linear-gradient(135deg, #0f9d58, #0b7d45);
   color: #fff;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(15, 157, 88, 0.3);
+  margin-top: 10px;
 }
 
-button:hover {
-  background: #0b7d45;
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #0b7d45, #085a31);
+  box-shadow: 0 8px 20px rgba(15, 157, 88, 0.4);
+  transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(15, 157, 88, 0.2);
 }
 
 /* Toast Style */
@@ -113,4 +177,9 @@ button:hover {
 
 .toast.error {
   background: #d32f2f;
+}
+
+/* Ensure SweetAlert ALWAYS layers over glassmorphism */
+.swal2-container {
+  z-index: 99999 !important;
 }

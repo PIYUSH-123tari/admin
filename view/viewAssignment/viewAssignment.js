@@ -86,7 +86,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // 🔹 NEW: Delete Collection
       document.getElementById("deleteCollection").addEventListener("click", async () => {
-        if (!confirm("Delete this collection? The pickup status will revert to 'assigned'.")) return;
+        const result = await Swal.fire({
+          title: "Delete this collection?",
+          text: "The pickup status will revert to 'assigned'.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#3085d6",
+          confirmButtonText: "Yes, delete it!"
+        });
+        if (!result.isConfirmed) return;
 
         const delRes = await fetch(
           `http://localhost:3500/api/collected/delete/${collectedId}`,
@@ -98,18 +107,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         const delData = await delRes.json();
 
         if (delRes.ok) {
-          alert("Collection deleted! Pickup status reverted to assigned.");
+          await Swal.fire("Deleted!", "Collection deleted! Pickup status reverted to assigned.", "success");
           // Reload page to reflect changes
           window.location.reload();
         } else {
-          alert(delData.message || "Failed to delete collection.");
+          Swal.fire("Error!", delData.message || "Failed to delete collection.", "error");
         }
       });
     }
 
     // 🔹 Delete Assignment (updated to use new route)
     document.getElementById("deleteAssignment").addEventListener("click", async () => {
-      if (!confirm("Delete this assignment? This will also delete any related collection and revert pickup status to 'pending'.")) return;
+      const result = await Swal.fire({
+        title: "Delete this assignment?",
+        text: "This will also delete any related collection and revert pickup status to 'pending'.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!"
+      });
+      if (!result.isConfirmed) return;
 
       const delRes = await fetch(
         `http://localhost:3500/api/assignment/delete/${data._id}`,
@@ -121,11 +139,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const delData = await delRes.json();
 
       if (delRes.ok) {
-        alert("Assignment deleted!");
+        await Swal.fire("Deleted!", "Assignment deleted!", "success");
         sessionStorage.removeItem("viewPickupId");
         window.location.href = "../adminPUR/adminPickupRequests.html";
       } else {
-        alert(delData.message || "Failed to delete assignment.");
+        Swal.fire("Error!", delData.message || "Failed to delete assignment.", "error");
       }
     });
 

@@ -111,11 +111,11 @@ const updateAgent = async (req, res) => {
       agent.password = await bcrypt.hash(password, 10);
     }
 
-    if (req.files["passport_photo"]) {
+    if (req.files && req.files["passport_photo"]) {
       agent.passport_photo = req.files["passport_photo"][0].path;
     }
 
-    if (req.files["adhar_photo"]) {
+    if (req.files && req.files["adhar_photo"]) {
       agent.adhar_photo = req.files["adhar_photo"][0].path;
     }
 

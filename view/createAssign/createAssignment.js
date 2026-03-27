@@ -77,10 +77,10 @@ document.getElementById("assignmentForm").addEventListener("submit", async (e) =
   const data = await res.json();
 
   if (res.ok) {
-    alert("Assignment Created!");
+    await Swal.fire("Success!", "Assignment Created!", "success");
     sessionStorage.removeItem("pickupRequestId");
     window.location.href = "../adminPUR/adminPickupRequests.html";
   } else {
-    alert(data.message);
+    Swal.fire("Error!", data.message, "error");
   }
 });

@@ -29,8 +29,11 @@
   <label>Email Address</label>
   <input type="email" name="agent_email" placeholder="Enter email" required />
 
-  <label>Password</label>
-  <input type="password" name="password" placeholder="Enter password" required />
+ <label>Password</label>
+  <div class="password-box">
+    <input type="password" name="password" id="agentPassword" placeholder="Enter password" required />
+    <span class="eye-toggle">👁</span>
+  </div>
 
   <label for="pass_photo">Passport Size Photo</label>
   <input type="file" name="passport_photo" id="pass_photo" accept=".jpg,.jpeg,.png" required />
@@ -42,6 +45,7 @@
 
 </form>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="ca.js"></script>
 </body>
 </html>

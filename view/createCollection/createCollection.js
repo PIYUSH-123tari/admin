@@ -2,8 +2,9 @@ const assignmentId = sessionStorage.getItem("assignmentId");
 const agentId = sessionStorage.getItem("agentId");
 
 if (!assignmentId || !agentId) {
-  alert("Invalid Access");
-  window.location.href = "../adminPUR/adminPickupRequests.html";
+  Swal.fire("Error", "Invalid Access", "error").then(() => {
+    window.location.href = "../adminPUR/adminPickupRequests.html";
+  });
 }
 
 // Load categories
@@ -54,14 +55,14 @@ document.getElementById("collectionForm").addEventListener("submit", async (e) =
   const data = await res.json();
 
   if (res.ok) {
-    alert("Collection Created Successfully!");
+    await Swal.fire("Success!", "Collection Created Successfully!", "success");
 
     sessionStorage.removeItem("assignmentId");
     sessionStorage.removeItem("agentId");
 
     window.location.href = "../viewAssignment/viewAssignment.html";
   } else {
-    alert(data.message);
+    Swal.fire("Error!", data.message, "error");
   }
 });
 

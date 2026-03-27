@@ -52,7 +52,7 @@ async function loadAgents() {
     });
 
   } catch (error) {
-    alert("Failed to load agents. Make sure backend is running.");
+    Swal.fire("Error!", "Failed to load agents. Make sure backend is running.", "error");
     console.error(error);
   }
 }

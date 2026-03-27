@@ -127,7 +127,10 @@ async function pollChanges(adminId) {
 document.addEventListener("DOMContentLoaded", async () => {
 
   const adminId = sessionStorage.getItem("admin_Id");
-  if (!adminId) { alert("Admin not logged in"); return; }
+  if (!adminId) { 
+    Swal.fire("Error!", "Admin not logged in", "error").then(() => window.location.href = "../register/register.html"); 
+    return; 
+  }
 
   const container  = document.getElementById("requestsContainer");
   const modal      = document.getElementById("imageModal");

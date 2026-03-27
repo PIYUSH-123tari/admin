@@ -45,7 +45,7 @@ app.use("/api/category", require("./router/categoryRoutes"));
 app.use("/api/warehouse", require("./router/warehouseRoutes"));
 app.use("/api/admin/notifications", pickupLogRoutes);
 
-app.listen(3500, () => {
+app.listen(3500,"0.0.0.0", () => {
   console.log("Server running on port 3500");
 });
 
