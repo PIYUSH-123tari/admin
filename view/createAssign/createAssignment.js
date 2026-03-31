@@ -7,6 +7,8 @@ dateInput.setAttribute("min", today);
 function goBack() {
   window.location.href = "../adminPUR/adminPickupRequests.html";
   sessionStorage.removeItem("pickupRequestId");
+  sessionStorage.removeItem("saved_assigned_date");
+  sessionStorage.removeItem("saved_assigned_time");
 }
 
 // Convert 24hr time to 12hr AM/PM format
@@ -26,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Restore form state
   const savedDate = sessionStorage.getItem("saved_assigned_date");
   if (savedDate) document.getElementById("assigned_date").value = savedDate;
-  
+
   const savedTime = sessionStorage.getItem("saved_assigned_time");
   if (savedTime) document.getElementById("assigned_time").value = savedTime;
 
@@ -43,7 +45,7 @@ function openAgentSelection() {
   sessionStorage.setItem("saved_assigned_date", document.getElementById("assigned_date").value);
   sessionStorage.setItem("saved_assigned_time", document.getElementById("assigned_time").value);
   sessionStorage.setItem("pickingAgentForAssignment", "true");
-  
+
   window.location.href = "../agentStatus/as.html";
 }
 
@@ -62,7 +64,7 @@ document.getElementById("assignmentForm").addEventListener("submit", async (e) =
   const token = sessionStorage.getItem("admin_token");
   const res = await fetch("http://localhost:3500/api/assignment/create", {
     method: "POST",
-    headers: { 
+    headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`
     },
@@ -79,6 +81,8 @@ document.getElementById("assignmentForm").addEventListener("submit", async (e) =
   if (res.ok) {
     await Swal.fire("Success!", "Assignment Created!", "success");
     sessionStorage.removeItem("pickupRequestId");
+    sessionStorage.removeItem("saved_assigned_date");
+    sessionStorage.removeItem("saved_assigned_time");
     window.location.href = "../adminPUR/adminPickupRequests.html";
   } else {
     Swal.fire("Error!", data.message, "error");

@@ -35,26 +35,28 @@ const createAgent = async (req, res) => {
     });
 
   } catch (err) {
+    console.error(err);
 
-  console.error(err);
+    if (err.code === 11000) {
+      if (err.message.includes("agent_phoneNo") || (err.keyPattern && err.keyPattern.agent_phoneNo)) {
+        return res.status(400).json({
+          message: "Phone number already exists"
+        });
+      }
 
-  if (err.code === 11000) {
-
-    if (err.keyPattern.agent_phoneNo) {
+      if (err.message.includes("agent_email") || (err.keyPattern && err.keyPattern.agent_email)) {
+        return res.status(400).json({
+          message: "Email already exists"
+        });
+      }
+      
       return res.status(400).json({
-        message: "Phone number already exists"
+        message: "Duplicate entry found"
       });
     }
 
-    if (err.keyPattern.agent_email) {
-      return res.status(400).json({
-        message: "Email already exists"
-      });
-    }
+    res.status(500).json({ message: "Server error" });
   }
-
-  res.status(500).json({ message: "Server error" });
-}
 };
 const mongoose = require("mongoose");
 
@@ -124,26 +126,28 @@ const updateAgent = async (req, res) => {
     res.json({ message: "Agent updated successfully" });
 
   } catch (err) {
+    console.error(err);
 
-  console.error(err);
+    if (err.code === 11000) {
+      if (err.message.includes("agent_phoneNo") || (err.keyPattern && err.keyPattern.agent_phoneNo)) {
+        return res.status(400).json({
+          message: "Phone number already exists"
+        });
+      }
 
-  if (err.code === 11000) {
-
-    if (err.keyPattern.agent_phoneNo) {
+      if (err.message.includes("agent_email") || (err.keyPattern && err.keyPattern.agent_email)) {
+        return res.status(400).json({
+          message: "Email already exists"
+        });
+      }
+      
       return res.status(400).json({
-        message: "Phone number already exists"
+        message: "Duplicate entry found"
       });
     }
 
-    if (err.keyPattern.agent_email) {
-      return res.status(400).json({
-        message: "Email already exists"
-      });
-    }
+    res.status(500).json({ message: "Server error" });
   }
-
-  res.status(500).json({ message: "Server error" });
-}
 };
 
 

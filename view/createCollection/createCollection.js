@@ -1,6 +1,21 @@
 const assignmentId = sessionStorage.getItem("assignmentId");
 const agentId = sessionStorage.getItem("agentId");
 
+// Restrict past dates and times for received_time
+const timeInput = document.getElementById("received_time");
+if (timeInput) {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  // Enforces that date cannot be in the past. To just prevent past dates but allow anytime today:
+  const localToday = `${year}-${month}-${day}T00:00`;
+  timeInput.setAttribute("min", localToday);
+}
+
+
 if (!assignmentId || !agentId) {
   Swal.fire("Error", "Invalid Access", "error").then(() => {
     window.location.href = "../adminPUR/adminPickupRequests.html";

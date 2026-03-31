@@ -33,9 +33,9 @@ window.onpopstate = function() {
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
-  const admin_Id = document.getElementById("loginAdminId").value;
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+  const admin_Id = document.getElementById("loginAdminId").value.trim();
 
   const authData = { email, password, admin_Id };
 
